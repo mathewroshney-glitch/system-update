@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRITICAL_SYSTEM_ERROR</title>
+    <style>
+        :root { --bsod-blue: #0078D7; }
+        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background-color: var(--bsod-blue); font-family: "Segoe UI", sans-serif; color: white; cursor: wait; }
+        .container { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; height: 100%; padding: 10%; box-sizing: border-box; }
+        .sad-face { font-size: 130px; margin-bottom: 10px; }
+        h1 { font-weight: 300; font-size: 28px; line-height: 1.4; max-width: 800px; }
+        .details { font-size: 16px; line-height: 1.6; margin-top: 30px; }
+        #scary-button { position: absolute; background-color: white; color: var(--bsod-blue); border: none; padding: 15px 30px; font-size: 18px; font-weight: 600; border-radius: 5px; cursor: pointer; left: 10%; bottom: 15%; transition: all 0.1s ease; }
+        #gotcha-screen { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #222; justify-content: center; align-items: center; flex-direction: column; z-index: 100; cursor: default; }
+        #gotcha-screen h1 { font-size: 70px; color: #ff4d6d; text-align: center; font-family: 'Arial Black', sans-serif; }
+        #gotcha-screen p { font-size: 22px; color: white; text-align: center; }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="main-scare">
+        <div class="sad-face">:(</div>
+        <h1>Your PC ran into a problem and needs to restart. We’re just collecting some error info, and then we’ll restart for you.</h1>
+        <div class="details">
+            <p><strong>Stop Code:</strong> CRITICAL_PROCESS_DIED_LOL</p>
+            <p><strong>What failed:</strong> boyfriend.exe</p>
+            <p><strong>Error check:</strong> GET_HUG_IMMEDIATELY</p>
+        </div>
+        <button id="scary-button">Run Emergency Diagnostics (99%)</button>
+    </div>
+
+    <div id="gotcha-screen">
+        <h1>APRIL FOOLS! 🃏</h1>
+        <p>System Status: 100% Stable ❤️</p>
+        <p>Required Action: Give your favorite engineer a high-five and a kiss.</p>
+    </div>
+
+    <script>
+        const scareBtn = document.getElementById('scary-button');
+        const gotchaScreen = document.getElementById('gotcha-screen');
+        const mainScare = document.getElementById('main-scare');
+        let moves = 0;
+
+        scareBtn.addEventListener('mouseover', () => {
+            if (moves < 5) {
+                const x = Math.random() * (window.innerWidth - scareBtn.offsetWidth);
+                const y = Math.random() * (window.innerHeight - scareBtn.offsetHeight);
+                scareBtn.style.left = x + 'px';
+                scareBtn.style.top = y + 'px';
+                if (moves === 2) scareBtn.innerText = "CRITICAL FAILURE IMMINENT";
+                if (moves === 4) scareBtn.innerText = "DATA LOSS DETECTED - CLICK NOW";
+                moves++;
+            } else {
+                scareBtn.innerText = "FIX SYSTEM NOW";
+                scareBtn.style.backgroundColor = "#ff4d6d";
+                scareBtn.style.color = "white";
+            }
+        });
+
+        scareBtn.addEventListener('click', () => {
+            mainScare.style.display = 'none';
+            gotchaScreen.style.display = 'flex';
+        });
+    </script>
+</body>
+</html>
